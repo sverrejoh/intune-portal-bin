@@ -2,7 +2,7 @@
 
 pkgname=intune-portal-bin
 _pkgname=intune-portal
-pkgver=1.2402.12
+pkgver=1.2404.23
 pkgrel=1
 pkgdesc="Enroll devices in Microsoft Azure Endpoint"
 arch=('x86_64')
@@ -13,7 +13,7 @@ depends=('curl' 'at-spi2-core' 'msalsdk-dbusclient' 'gtk3' 'webkit2gtk' 'libsoup
 install=$pkgname.install
 source=("https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/i/${_pkgname}/${_pkgname}_${pkgver}-jammy_amd64.deb"
         "os-release")
-sha256sums=('4b9f83766d77389e1e41343d43c3a0b02aa7a4ce86c6e675844c9c642cbafff8'
+sha256sums=('cc01f7e6217edd8a43346a375219b32f8a51257944846d4f693ef5aa746da408'
             'ef3177044475bb6ab8cc77a97b889742eebf0854bbdab5f098a4c55a62c8c39e')
 
 prepare() {
