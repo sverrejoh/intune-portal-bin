@@ -9,7 +9,7 @@ arch=('x86_64')
 url="http://intune.microsoft.com"
 license=('Unknown')
 provides=('intune-portal')
-depends=('curl' 'at-spi2-core' 'gtk3' 'webkit2gtk' 'libsoup' 'libsecret' 'libpwquality' 'libx11' 'sqlite' 'microsoft-indentity-broker')
+depends=('curl' 'at-spi2-core' 'gtk3' 'webkit2gtk' 'libsoup' 'libsecret' 'libpwquality' 'libx11' 'sqlite' 'microsoft-identity-broker')
 install=$pkgname.install
 source=("https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/${_pkgname}/${_pkgname}_${pkgver}-noble_amd64.deb"
         "os-release")
