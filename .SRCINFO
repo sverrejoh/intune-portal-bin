@@ -1,7 +1,7 @@
 pkgbase = intune-portal-bin
 	pkgdesc = Enroll devices in Microsoft Azure Endpoint
 	pkgver = 1.2411.14
-	pkgrel = 1
+	pkgrel = 2
 	url = http://intune.microsoft.com
 	install = intune-portal-bin.install
 	arch = x86_64
@@ -15,6 +15,7 @@ pkgbase = intune-portal-bin
 	depends = libpwquality
 	depends = libx11
 	depends = sqlite
+	depends = microsoft-indentity-broker
 	provides = intune-portal
 	source = https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/intune-portal/intune-portal_1.2411.14-noble_amd64.deb
 	source = os-release
