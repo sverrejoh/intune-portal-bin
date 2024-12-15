@@ -2,19 +2,19 @@
 
 pkgname=intune-portal-bin
 _pkgname=intune-portal
-pkgver=1.2405.17
+pkgver=1.2411.14
 pkgrel=1
 pkgdesc="Enroll devices in Microsoft Azure Endpoint"
 arch=('x86_64')
 url="http://intune.microsoft.com"
 license=('Unknown')
 provides=('intune-portal')
-depends=('curl' 'at-spi2-core' 'msalsdk-dbusclient' 'gtk3' 'webkit2gtk' 'libsoup' 'libsecret' 'libpwquality' 'libx11' 'sqlite')
+depends=('curl' 'at-spi2-core' 'gtk3' 'webkit2gtk' 'libsoup' 'libsecret' 'libpwquality' 'libx11' 'sqlite')
 install=$pkgname.install
-source=("https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/i/${_pkgname}/${_pkgname}_${pkgver}-jammy_amd64.deb"
+source=("https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/${_pkgname}/${_pkgname}_${pkgver}-noble_amd64.deb"
         "os-release")
-sha256sums=('5a954f5b387c8cdd3dd8c698dab31784b7e9557b1f94c97d84e63d9cd18994b9'
-            'ef3177044475bb6ab8cc77a97b889742eebf0854bbdab5f098a4c55a62c8c39e')
+sha256sums=('37a69f4f3cca163ca1897230b20998a684a108571f6203499c2fcd1c420eec66'
+            '3d545e5f2af1dc74afb0a295a67b07e81ac226534690891ef7ddd86ef0886baf')
 
 prepare() {
     tar -xvf data.tar.xz
