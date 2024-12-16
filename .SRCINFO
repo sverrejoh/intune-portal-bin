@@ -1,7 +1,7 @@
 pkgbase = intune-portal-bin
 	pkgdesc = Enroll devices in Microsoft Azure Endpoint
 	pkgver = 1.2411.14
-	pkgrel = 2
+	pkgrel = 3
 	url = http://intune.microsoft.com
 	install = intune-portal-bin.install
 	arch = x86_64
@@ -9,7 +9,7 @@ pkgbase = intune-portal-bin
 	depends = curl
 	depends = at-spi2-core
 	depends = gtk3
-	depends = webkit2gtk
+	depends = webkit2gtk-4.1
 	depends = libsoup
 	depends = libsecret
 	depends = libpwquality
