@@ -3,13 +3,33 @@
 pkgname=intune-portal-bin
 _pkgname=intune-portal
 pkgver=1.2411.14
-pkgrel=3
+pkgrel=4
 pkgdesc="Enroll devices in Microsoft Azure Endpoint"
 arch=('x86_64')
 url="http://intune.microsoft.com"
 license=('Unknown')
 provides=('intune-portal')
-depends=('curl' 'at-spi2-core' 'gtk3' 'webkit2gtk-4.1' 'libsoup' 'libsecret' 'libpwquality' 'libx11' 'sqlite' 'microsoft-identity-broker')
+depends=(
+        'curl'
+        'at-spi2-core'
+        'dbus'
+        'gtk3'
+        'glib2'
+        'webkit2gtk-4.1'
+        'hicolor-icon-theme'
+        'libsoup3'
+        'libsecret'
+        'libpwquality'
+        'libp11-kit'
+        'libx11'
+        'openssl'
+        'pam'
+        'pango'
+        'sqlite'
+        'systemd-libs'
+        'microsoft-identity-broker'
+        'zlib'
+)
 install=$pkgname.install
 source=("https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/${_pkgname}/${_pkgname}_${pkgver}-noble_amd64.deb"
         "os-release")
