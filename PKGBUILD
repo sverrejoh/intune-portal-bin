@@ -41,9 +41,11 @@ source=("https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/${_pkgname
         "os-release"
         "openssl_shim.c"
         "webkit_uri_shim.c"
-        "intune-wrapper.sh")
+        "intune-wrapper.sh"
+        "README.md")
 sha256sums=('36527c9bb575c8b12b3a7b69ac7b3711a80fb704b361677b3411f48dcef6fa2e'
             'e76761955061bc82bc47ec0214c1053100b3256e1b93fabf279bb80e220c4046'
+            'SKIP'
             'SKIP'
             'SKIP'
             'SKIP')
@@ -89,4 +91,7 @@ package() {
 
   install -Dm644 "$srcdir"/os-release -t "$pkgdir"/opt/microsoft/intune/share/
   cp -r "$srcdir"/opt/microsoft/intune/share/* "$pkgdir"/opt/microsoft/intune/share/
+
+  # Install documentation
+  install -Dm644 "$srcdir"/README.md "$pkgdir"/usr/share/doc/intune-portal/README.md
 }
