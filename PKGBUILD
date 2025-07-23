@@ -1,5 +1,5 @@
 # Maintainer: Dan Johansen <strit@strits.dk>
-# This package includes OpenSSL 3.5 compatibility fix for Arch Linux
+# This package includes compatibility fixes for Arch Linux
 
 pkgname=intune-portal-bin
 _pkgname=intune-portal
@@ -35,9 +35,11 @@ install=$pkgname.install
 source=("https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/${_pkgname}/${_pkgname}_${pkgver}-noble_amd64.deb"
         "os-release"
         "openssl_shim.c"
-        "intune-wrapper-openssl.sh")
+        "webkit_uri_shim.c"
+        "intune-wrapper-webkit.sh")
 sha256sums=('36527c9bb575c8b12b3a7b69ac7b3711a80fb704b361677b3411f48dcef6fa2e'
             'e76761955061bc82bc47ec0214c1053100b3256e1b93fabf279bb80e220c4046'
+            'SKIP'
             'SKIP'
             'SKIP')
 
@@ -48,6 +50,9 @@ prepare() {
 build() {
     # Compile OpenSSL compatibility shim
     gcc -fPIC -shared -o openssl_shim.so openssl_shim.c -ldl
+
+    # Compile WebKit URI registration shim
+    gcc -fPIC -shared -o webkit_uri_shim.so webkit_uri_shim.c -ldl -pthread
 }
 
 package() {
@@ -70,11 +75,12 @@ package() {
   done
 
   # Install wrapper script as the main binaries
-  install -Dm755 "$srcdir"/intune-wrapper-openssl.sh "$pkgdir"/opt/microsoft/intune/bin/intune-portal
-  install -Dm755 "$srcdir"/intune-wrapper-openssl.sh "$pkgdir"/opt/microsoft/intune/bin/intune-agent
+  install -Dm755 "$srcdir"/intune-wrapper-webkit.sh "$pkgdir"/opt/microsoft/intune/bin/intune-portal
+  install -Dm755 "$srcdir"/intune-wrapper-webkit.sh "$pkgdir"/opt/microsoft/intune/bin/intune-agent
 
-  # Install compatibility shim
+  # Install compatibility shims
   install -Dm755 "$srcdir"/openssl_shim.so "$pkgdir"/opt/microsoft/intune/lib/openssl_shim.so
+  install -Dm755 "$srcdir"/webkit_uri_shim.so "$pkgdir"/opt/microsoft/intune/lib/webkit_uri_shim.so
 
   install -Dm644 "$srcdir"/os-release -t "$pkgdir"/opt/microsoft/intune/share/
   cp -r "$srcdir"/opt/microsoft/intune/share/* "$pkgdir"/opt/microsoft/intune/share/
