@@ -3,7 +3,7 @@
 pkgname=intune-portal-bin
 _pkgname=intune-portal
 pkgver=1.2503.10
-pkgrel=1
+pkgrel=2
 pkgdesc="Enroll devices in Microsoft Azure Endpoint"
 arch=('x86_64')
 url="http://intune.microsoft.com"

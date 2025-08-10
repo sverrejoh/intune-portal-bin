@@ -10,6 +10,11 @@ post_install() {
     echo "For Plasma based systems:"
     echo "'systemctl --user enable intune-agent.service intune-agent.timer'"
     echo "Then add file as mentioned in https://wiki.archlinux.org/title/KDE_Wallet#Automatic_D-Bus_activation."
+    echo ""
+    echo "The registration file is not in the correct location for Intune Portal to find it."
+    echo "So please create the symlink for it:"
+    echo "'mkdir -p ~/.local/state/intune'"
+    echo "'ln -s ~/.config/intune/registration.toml ~/.local/state/intune/registration.toml'"
     echo "Don't forget to reboot after running the above commands!"
 }
 
