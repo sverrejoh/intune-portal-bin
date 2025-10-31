@@ -3,7 +3,7 @@
 
 pkgname=intune-portal-bin
 _pkgname=intune-portal
-pkgver=1.2503.10
+pkgver=1.2511.7
 pkgrel=1
 pkgdesc="Enroll devices in Microsoft Azure Endpoint"
 arch=('x86_64')
@@ -36,7 +36,7 @@ source=("https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/i/${_pkgname
         "os-release"
         "openssl_shim.c"
         "intune-wrapper-openssl.sh")
-sha256sums=('36527c9bb575c8b12b3a7b69ac7b3711a80fb704b361677b3411f48dcef6fa2e'
+sha256sums=('307bc09a47a6c76f1935c565a05371274dd86f1ae054fbc1ece38c611e8eca8f'
             'e76761955061bc82bc47ec0214c1053100b3256e1b93fabf279bb80e220c4046'
             'SKIP'
             'SKIP')
