@@ -1,18 +1,39 @@
+_notes() {
+    cat <<'MSG'
+
+==> intune-portal-bin (Arch fork)
+    Intune only supports Ubuntu/RHEL, so the machine has to look like
+    Ubuntu 24.04 and a handful of system settings have to be right
+    before enrollment works. Nothing below is done by the package; run
+    the helper once as your normal user (it uses sudo where needed):
+
+        intune-arch-setup          # prepares the system, idempotent
+        intune-doctor              # verifies every known requirement
+
+    Then log out and back in (group membership + keyring), and enroll:
+
+        intune-portal
+
+    Guide and troubleshooting: README.md in the package repository.
+MSG
+}
+
 post_install() {
-    echo "Intune Portal does not currently support Arch Linux as a distribution."
-    echo "So you have to edit or replace your /etc/os-release file with an Ubuntu one."
-    echo "This package provides such a file in /opt/microsoft/intune/share/os-release for this purpose!"
-    echo ""
-    echo "Before you can enroll your device, you need to enable the service and timer and then reboot:"
-    echo "'sudo systemctl enable intune-daemon.service'"
-    echo "For GNOME based systems:"
-    echo "'systemctl --user enable intune-agent.service intune-agent.timer gnome-keyring-daemon.socket gnome-keyring-daemon.service'"
-    echo "For Plasma based systems:"
-    echo "'systemctl --user enable intune-agent.service intune-agent.timer'"
-    echo "Then add file as mentioned in https://wiki.archlinux.org/title/KDE_Wallet#Automatic_D-Bus_activation."
-    echo "Don't forget to reboot after running the above commands!"
+    _notes
+}
+
+post_upgrade() {
+    systemctl daemon-reload >/dev/null 2>&1 || true
+    cat <<'MSG'
+==> intune-portal-bin upgraded. If the device is enrolled nothing else
+    is needed. Run `intune-doctor` if anything misbehaves.
+MSG
 }
 
 post_remove() {
-    echo "Remember to fix the os-release file!"
+    cat <<'MSG'
+==> intune-portal-bin removed. The Ubuntu os-release spoof, the tpm2-tss
+    pin and the pacman hook were set up by intune-arch-setup and are
+    still in place; run `intune-arch-setup --undo` to revert them.
+MSG
 }

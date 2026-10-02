@@ -1,0 +1,21 @@
+# Installed to /etc/pacman.d/hooks/ by intune-arch-setup.
+#
+# Intune compliance requires /etc/os-release to report Ubuntu. Two
+# packages undo that on upgrade: omarchy-settings deliberately
+# `rm -f`s /etc/os-release and copies its own in its install scriptlet,
+# and filesystem ships the real Arch /usr/lib/os-release. PostTransaction
+# runs after scriptlets, so this repairs the damage in the same
+# transaction. /usr/lib/os-release itself is protected by
+# `NoUpgrade = usr/lib/os-release` in pacman.conf (also set by
+# intune-arch-setup), which makes pacman leave a .pacnew instead.
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = omarchy-settings
+Target = filesystem
+
+[Action]
+Description = Restoring /etc/os-release symlink (Intune compliance)...
+When = PostTransaction
+Exec = /usr/bin/ln -sfn ../usr/lib/os-release /etc/os-release
